@@ -1,0 +1,4 @@
+[submodule "mandelbrot"]
+	path = mandelbrot/
+	url = https://github.com/Geospace/mandelbrot-c-sdl2.git
+
