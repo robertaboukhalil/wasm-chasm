@@ -1,0 +1,41 @@
+diff --git a/headers/myFractal.h b/headers/myFractal.h
+index 29c66aa..9b07fe4 100644
+--- a/headers/myFractal.h
++++ b/headers/myFractal.h
+@@ -120,12 +120,12 @@ void is_user_moving(Sdl *sdl, Fractal *fractal) {
+     fractal->yMove = fractal->yMove - (moveStep / fractal->zoom * delta);
+     draw_cross(sdl);
+     print_verbose(fractal);
+-  } else if (sdl->keys[SDL_SCANCODE_KP_PLUS]) {
++  } else if (sdl->keys[SDL_SCANCODE_I]) {
+     fractal->zoom = fractal->zoom + (moveStep * fractal->zoom * delta);
+     fractal->iMax = fractal->iMax + zoomStep * delta;
+     draw_cross(sdl);
+     print_verbose(fractal);
+-  } else if (sdl->keys[SDL_SCANCODE_KP_MINUS]
++  } else if (sdl->keys[SDL_SCANCODE_O]
+     // User is not allowed to zoom back past 0.3
+     && (fractal->zoom - (moveStep * fractal->zoom * delta)) > 0.3) {
+     fractal->zoom = fractal->zoom - (moveStep * fractal->zoom * delta);
+diff --git a/mandelbrot.c b/mandelbrot.c
+index acd16f5..a89b78f 100644
+--- a/mandelbrot.c
++++ b/mandelbrot.c
+@@ -6,6 +6,7 @@
+ #include "headers/mySDL.h"
+ #include "headers/myStructures.h"
+ #include "headers/myFractal.h"
++#include <emscripten.h>
+ 
+ // Any other main prototype will bug MinGW's SDL2
+ // Doesn't matter on *nix
+@@ -24,7 +25,8 @@ int main(int argc, char **argv) {
+ 
+     SDL_RenderPresent(sdl->renderer);
+ 
+-    SDL_Delay(10);
++    //SDL_Delay(10);
++    emscripten_sleep(10);
+   }
+ 
+   free_everything(sdl, fractal);
