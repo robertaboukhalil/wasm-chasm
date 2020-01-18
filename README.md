@@ -29,7 +29,7 @@ cd mandelbrot
 git apply ../mandelbrot.diff
 
 # Compile to WebAssembly (enable Asyncify and SDL2 port)
-emcc -o mandelbrot.html mandelbrot.c -s USE_SDL=2 -s ASYNCIFY=1
+emcc -O2 -o mandelbrot.html mandelbrot.c -s USE_SDL=2 -s ASYNCIFY=1
 ```
 
 ### Further Reading
